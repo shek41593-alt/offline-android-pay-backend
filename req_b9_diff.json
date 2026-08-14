@@ -1,0 +1,9 @@
+{
+    "transactionId": "TX-B9-001",
+    "senderId": "USER1",
+    "receiverId": "MERCHANT1",
+    "amount": 1000.00,
+    "currency": "INR",
+    "paymentMode": "QR",
+    "timestamp": "2026-08-14T10:00:00Z"
+}

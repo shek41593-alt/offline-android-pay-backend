@@ -4,6 +4,7 @@ import com.lastmilebanking.backend.dto.request.SyncTransactionRequest;
 import com.lastmilebanking.backend.dto.response.SyncTransactionResponse;
 import com.lastmilebanking.backend.entity.Transaction;
 import com.lastmilebanking.backend.entity.TransactionStatus;
+import com.lastmilebanking.backend.exception.IdempotencyConflictException;
 import com.lastmilebanking.backend.repository.TransactionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -32,6 +34,7 @@ public class TransactionServiceTest {
     private TransactionService transactionService;
 
     private SyncTransactionRequest validRequest;
+    private Transaction existingTx;
 
     @BeforeEach
     void setUp() {
@@ -42,13 +45,24 @@ public class TransactionServiceTest {
         validRequest.setAmount(new BigDecimal("100.50"));
         validRequest.setCurrency("INR");
         validRequest.setPaymentMode("QR");
-        validRequest.setTimestamp(Instant.now());
+        validRequest.setTimestamp(Instant.parse("2026-08-14T10:00:00Z"));
         validRequest.setSignature("TEST_SIG");
+
+        existingTx = new Transaction();
+        existingTx.setTransactionId("TX001");
+        existingTx.setSenderId("SENDER1");
+        existingTx.setReceiverId("RECEIVER1");
+        existingTx.setAmount(new BigDecimal("100.50"));
+        existingTx.setCurrency("INR");
+        existingTx.setPaymentMode("QR");
+        existingTx.setTransactionTimestamp(Instant.parse("2026-08-14T10:00:00Z"));
+        existingTx.setSignature("TEST_SIG");
+        existingTx.setStatus(TransactionStatus.RECEIVED);
     }
 
     @Test
     void processTransaction_validNew_createsAndReturnsReceived() {
-        when(transactionRepository.existsByTransactionId(validRequest.getTransactionId())).thenReturn(false);
+        when(transactionRepository.findByTransactionId(validRequest.getTransactionId())).thenReturn(Optional.empty());
 
         SyncTransactionResponse response = transactionService.processTransaction(validRequest);
 
@@ -60,8 +74,8 @@ public class TransactionServiceTest {
     }
 
     @Test
-    void processTransaction_duplicate_returnsDuplicateAndNotSaved() {
-        when(transactionRepository.existsByTransactionId(validRequest.getTransactionId())).thenReturn(true);
+    void processTransaction_exactDuplicate_returnsDuplicateAndNotSaved() {
+        when(transactionRepository.findByTransactionId(validRequest.getTransactionId())).thenReturn(Optional.of(existingTx));
 
         SyncTransactionResponse response = transactionService.processTransaction(validRequest);
 
@@ -73,36 +87,100 @@ public class TransactionServiceTest {
     }
 
     @Test
-    void processTransaction_fieldMappingAndInitialStatus_correct() {
-        when(transactionRepository.existsByTransactionId(validRequest.getTransactionId())).thenReturn(false);
+    void processTransaction_sameIdDifferentAmount_throwsConflict() {
+        existingTx.setAmount(new BigDecimal("200.00"));
+        when(transactionRepository.findByTransactionId(validRequest.getTransactionId())).thenReturn(Optional.of(existingTx));
 
-        transactionService.processTransaction(validRequest);
-
-        ArgumentCaptor<Transaction> txCaptor = ArgumentCaptor.forClass(Transaction.class);
-        verify(transactionRepository).save(txCaptor.capture());
-
-        Transaction savedTx = txCaptor.getValue();
-        assertThat(savedTx.getTransactionId()).isEqualTo(validRequest.getTransactionId());
-        assertThat(savedTx.getSenderId()).isEqualTo(validRequest.getSenderId());
-        assertThat(savedTx.getReceiverId()).isEqualTo(validRequest.getReceiverId());
-        assertThat(savedTx.getAmount()).isEqualByComparingTo(validRequest.getAmount());
-        assertThat(savedTx.getCurrency()).isEqualTo(validRequest.getCurrency());
-        assertThat(savedTx.getPaymentMode()).isEqualTo(validRequest.getPaymentMode());
-        assertThat(savedTx.getTransactionTimestamp()).isEqualTo(validRequest.getTimestamp());
-        assertThat(savedTx.getSignature()).isEqualTo(validRequest.getSignature());
-        assertThat(savedTx.getStatus()).isEqualTo(TransactionStatus.RECEIVED);
-    }
-
-    @Test
-    void processTransaction_repositoryFailure_propagatesException() {
-        when(transactionRepository.existsByTransactionId(validRequest.getTransactionId())).thenReturn(false);
-        when(transactionRepository.save(any(Transaction.class)))
-                .thenThrow(new DataIntegrityViolationException("Database constraint violated"));
-
-        assertThrows(DataIntegrityViolationException.class, () -> {
+        assertThrows(IdempotencyConflictException.class, () -> {
             transactionService.processTransaction(validRequest);
         });
 
+        verify(transactionRepository, never()).save(any(Transaction.class));
+    }
+    
+    @Test
+    void processTransaction_sameIdDifferentSenderId_throwsConflict() {
+        existingTx.setSenderId("DIFFERENT_SENDER");
+        when(transactionRepository.findByTransactionId(validRequest.getTransactionId())).thenReturn(Optional.of(existingTx));
+
+        assertThrows(IdempotencyConflictException.class, () -> {
+            transactionService.processTransaction(validRequest);
+        });
+
+        verify(transactionRepository, never()).save(any(Transaction.class));
+    }
+
+    @Test
+    void processTransaction_sameIdDifferentReceiver_throwsConflict() {
+        existingTx.setReceiverId("DIFF");
+        when(transactionRepository.findByTransactionId(validRequest.getTransactionId())).thenReturn(Optional.of(existingTx));
+
+        assertThrows(IdempotencyConflictException.class, () -> {
+            transactionService.processTransaction(validRequest);
+        });
+
+        verify(transactionRepository, never()).save(any(Transaction.class));
+    }
+
+    @Test
+    void processTransaction_sameIdDifferentCurrency_throwsConflict() {
+        existingTx.setCurrency("USD");
+        when(transactionRepository.findByTransactionId(validRequest.getTransactionId())).thenReturn(Optional.of(existingTx));
+
+        assertThrows(IdempotencyConflictException.class, () -> {
+            transactionService.processTransaction(validRequest);
+        });
+        verify(transactionRepository, never()).save(any(Transaction.class));
+    }
+
+    @Test
+    void processTransaction_sameIdDifferentPaymentMode_throwsConflict() {
+        existingTx.setPaymentMode("SMS");
+        when(transactionRepository.findByTransactionId(validRequest.getTransactionId())).thenReturn(Optional.of(existingTx));
+
+        assertThrows(IdempotencyConflictException.class, () -> {
+            transactionService.processTransaction(validRequest);
+        });
+        verify(transactionRepository, never()).save(any(Transaction.class));
+    }
+    
+    @Test
+    void processTransaction_sameIdDifferentTimestamp_throwsConflict() {
+        existingTx.setTransactionTimestamp(Instant.parse("2026-08-14T11:00:00Z"));
+        when(transactionRepository.findByTransactionId(validRequest.getTransactionId())).thenReturn(Optional.of(existingTx));
+
+        assertThrows(IdempotencyConflictException.class, () -> {
+            transactionService.processTransaction(validRequest);
+        });
+        verify(transactionRepository, never()).save(any(Transaction.class));
+    }
+
+    @Test
+    void processTransaction_sameIdDifferentSignature_throwsConflict() {
+        existingTx.setSignature("diff_sig");
+        when(transactionRepository.findByTransactionId(validRequest.getTransactionId())).thenReturn(Optional.of(existingTx));
+
+        assertThrows(IdempotencyConflictException.class, () -> {
+            transactionService.processTransaction(validRequest);
+        });
+        verify(transactionRepository, never()).save(any(Transaction.class));
+    }
+
+    @Test
+    void processTransaction_concurrentInsertRace_handlesDuplicateSafely() {
+        when(transactionRepository.findByTransactionId(validRequest.getTransactionId()))
+            .thenReturn(Optional.empty()) // First call: no record
+            .thenReturn(Optional.of(existingTx)); // Second call after constraint failure: record exists!
+
+        when(transactionRepository.save(any(Transaction.class)))
+            .thenThrow(new DataIntegrityViolationException("duplicate key value violates unique constraint"));
+
+        SyncTransactionResponse response = transactionService.processTransaction(validRequest);
+
+        assertThat(response).isNotNull();
+        assertThat(response.getStatus()).isEqualTo(TransactionStatus.DUPLICATE);
+        
         verify(transactionRepository, times(1)).save(any(Transaction.class));
+        verify(transactionRepository, times(2)).findByTransactionId(validRequest.getTransactionId());
     }
 }

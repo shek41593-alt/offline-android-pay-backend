@@ -4,9 +4,14 @@ import com.lastmilebanking.backend.dto.request.SyncTransactionRequest;
 import com.lastmilebanking.backend.dto.response.SyncTransactionResponse;
 import com.lastmilebanking.backend.entity.Transaction;
 import com.lastmilebanking.backend.entity.TransactionStatus;
+import com.lastmilebanking.backend.exception.IdempotencyConflictException;
 import com.lastmilebanking.backend.repository.TransactionRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class TransactionService {
@@ -19,12 +24,10 @@ public class TransactionService {
 
     @Transactional
     public SyncTransactionResponse processTransaction(SyncTransactionRequest request) {
-        if (transactionRepository.existsByTransactionId(request.getTransactionId())) {
-            return new SyncTransactionResponse(
-                    request.getTransactionId(),
-                    TransactionStatus.DUPLICATE,
-                    "Transaction already exists"
-            );
+        Optional<Transaction> existingOpt = transactionRepository.findByTransactionId(request.getTransactionId());
+        
+        if (existingOpt.isPresent()) {
+            return checkIdempotencyAndReturn(existingOpt.get(), request);
         }
 
         Transaction transaction = new Transaction();
@@ -38,12 +41,42 @@ public class TransactionService {
         transaction.setSignature(request.getSignature());
         transaction.setStatus(TransactionStatus.RECEIVED);
 
-        transactionRepository.save(transaction);
+        try {
+            transactionRepository.save(transaction);
+        } catch (DataIntegrityViolationException e) {
+            // Concurrent insert race condition occurred. Unique constraint failed.
+            // We should fetch the one that was just inserted and check it!
+            Optional<Transaction> concurrentExistingOpt = transactionRepository.findByTransactionId(request.getTransactionId());
+            if (concurrentExistingOpt.isPresent()) {
+                return checkIdempotencyAndReturn(concurrentExistingOpt.get(), request);
+            } else {
+                throw e; // If it's a difference constraint failing, rethrow.
+            }
+        }
 
         return new SyncTransactionResponse(
                 transaction.getTransactionId(),
                 transaction.getStatus(),
                 "Transaction received successfully"
+        );
+    }
+
+    private SyncTransactionResponse checkIdempotencyAndReturn(Transaction existing, SyncTransactionRequest request) {
+        if (!Objects.equals(existing.getSenderId(), request.getSenderId()) ||
+            !Objects.equals(existing.getReceiverId(), request.getReceiverId()) ||
+            existing.getAmount().compareTo(request.getAmount()) != 0 ||
+            !Objects.equals(existing.getCurrency(), request.getCurrency()) ||
+            !Objects.equals(existing.getPaymentMode(), request.getPaymentMode()) ||
+            !Objects.equals(existing.getTransactionTimestamp(), request.getTimestamp()) ||
+            !Objects.equals(existing.getSignature(), request.getSignature())) {
+            
+            throw new IdempotencyConflictException("Transaction ID already exists with different transaction data");
+        }
+
+        return new SyncTransactionResponse(
+                existing.getTransactionId(),
+                TransactionStatus.DUPLICATE,
+                "Transaction already exists"
         );
     }
 }
