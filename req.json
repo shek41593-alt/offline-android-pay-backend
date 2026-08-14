@@ -1,0 +1,10 @@
+{
+  "transactionId": "TX_TEST_2",
+  "senderId": "S1",
+  "receiverId": "R1",
+  "amount": 100.50,
+  "currency": "INR",
+  "paymentMode": "QR",
+  "timestamp": "2026-08-14T10:00:00Z",
+  "signature": "TEST"
+}
