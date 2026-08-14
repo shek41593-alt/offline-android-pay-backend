@@ -75,4 +75,51 @@ public class TransactionRepositoryTest {
             transactionRepository.saveAndFlush(tx2);
         });
     }
+
+    @Test
+    public void testFindByTransactionId() {
+        Transaction tx = new Transaction();
+        tx.setTransactionId("TX003");
+        tx.setSenderId("S1");
+        tx.setReceiverId("R1");
+        tx.setAmount(new BigDecimal("10.0"));
+        tx.setCurrency("INR");
+        tx.setPaymentMode("SMS");
+        tx.setStatus(TransactionStatus.RECEIVED);
+
+        transactionRepository.saveAndFlush(tx);
+
+        var fetchedTx = transactionRepository.findByTransactionId("TX003");
+        assertThat(fetchedTx).isPresent();
+        assertThat(fetchedTx.get().getTransactionId()).isEqualTo("TX003");
+    }
+
+    @Test
+    public void testFindByTransactionIdNotFound() {
+        var fetchedTx = transactionRepository.findByTransactionId("TX999");
+        assertThat(fetchedTx).isEmpty();
+    }
+
+    @Test
+    public void testExistsByTransactionId() {
+        Transaction tx = new Transaction();
+        tx.setTransactionId("TX004");
+        tx.setSenderId("S1");
+        tx.setReceiverId("R1");
+        tx.setAmount(new BigDecimal("10.0"));
+        tx.setCurrency("INR");
+        tx.setPaymentMode("SMS");
+        tx.setStatus(TransactionStatus.RECEIVED);
+
+        transactionRepository.saveAndFlush(tx);
+
+        boolean exists = transactionRepository.existsByTransactionId("TX004");
+        assertThat(exists).isTrue();
+    }
+
+    @Test
+    public void testExistsByTransactionIdNotFound() {
+        boolean exists = transactionRepository.existsByTransactionId("TX999");
+        assertThat(exists).isFalse();
+    }
 }
