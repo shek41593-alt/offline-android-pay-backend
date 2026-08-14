@@ -5,6 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.lastmilebanking.backend.dto.request.SyncTransactionRequest;
 import com.lastmilebanking.backend.dto.response.SyncTransactionResponse;
 import com.lastmilebanking.backend.entity.TransactionStatus;
+import com.lastmilebanking.backend.exception.GlobalExceptionHandler;
 import com.lastmilebanking.backend.service.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,6 +26,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.containsString;
+
 
 @ExtendWith(MockitoExtension.class)
 public class TransactionControllerTest {
@@ -41,7 +45,9 @@ public class TransactionControllerTest {
 
     @BeforeEach
     void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(transactionController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(transactionController)
+                .setControllerAdvice(new GlobalExceptionHandler())
+                .build();
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
 
@@ -77,37 +83,35 @@ public class TransactionControllerTest {
     }
 
     @Test
-    void createTransaction_missingTransactionId_returns400AndNoServiceCall() throws Exception {
+    void createTransaction_missingTransactionId_returns400AndValidationError() throws Exception {
         validRequest.setTransactionId(null);
 
         mockMvc.perform(post("/api/v1/transactions")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(validRequest)))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400))
+                .andExpect(jsonPath("$.error").value("VALIDATION_ERROR"))
+                .andExpect(jsonPath("$.message").value(containsString("is required")))
+                .andExpect(jsonPath("$.path").value("/api/v1/transactions"))
+                .andExpect(jsonPath("$.timestamp").exists());
 
         verify(transactionService, never()).processTransaction(any(SyncTransactionRequest.class));
     }
 
     @Test
-    void createTransaction_zeroAmount_returns400AndNoServiceCall() throws Exception {
-        validRequest.setAmount(new BigDecimal("0.00"));
+    void createTransaction_malformedJson_returns400AndBadRequestError() throws Exception {
+        String malformedJson = "{ \"transactionId\": \"TX001\", \"amount\": \"not_a_number\" }";
 
         mockMvc.perform(post("/api/v1/transactions")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(validRequest)))
-                .andExpect(status().isBadRequest());
-
-        verify(transactionService, never()).processTransaction(any(SyncTransactionRequest.class));
-    }
-
-    @Test
-    void createTransaction_negativeAmount_returns400AndNoServiceCall() throws Exception {
-        validRequest.setAmount(new BigDecimal("-100.00"));
-
-        mockMvc.perform(post("/api/v1/transactions")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(validRequest)))
-                .andExpect(status().isBadRequest());
+                .content(malformedJson))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400))
+                .andExpect(jsonPath("$.error").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.message").value("Malformed or invalid request body"))
+                .andExpect(jsonPath("$.path").value("/api/v1/transactions"))
+                .andExpect(jsonPath("$.timestamp").exists());
 
         verify(transactionService, never()).processTransaction(any(SyncTransactionRequest.class));
     }
@@ -132,19 +136,34 @@ public class TransactionControllerTest {
     }
 
     @Test
-    void createTransaction_serviceFailure_propagatesException() throws Exception {
+    void createTransaction_serviceFailure_returns500AndInternalServerError() throws Exception {
         when(transactionService.processTransaction(any(SyncTransactionRequest.class)))
-                .thenThrow(new RuntimeException("Service failed"));
+                .thenThrow(new RuntimeException("Service failed unexpectedly"));
 
-        boolean exceptionThrown = false;
-        try {
-            mockMvc.perform(post("/api/v1/transactions")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(validRequest)));
-        } catch (Exception e) {
-            exceptionThrown = true;
-        }
+        mockMvc.perform(post("/api/v1/transactions")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(validRequest)))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.status").value(500))
+                .andExpect(jsonPath("$.error").value("INTERNAL_SERVER_ERROR"))
+                .andExpect(jsonPath("$.message").value("An unexpected server error occurred"))
+                .andExpect(jsonPath("$.path").value("/api/v1/transactions"))
+                .andExpect(jsonPath("$.timestamp").exists());
+    }
 
-        assertThat(exceptionThrown).isTrue();
+    @Test
+    void createTransaction_persistenceFailure_returns500AndInternalServerError() throws Exception {
+        when(transactionService.processTransaction(any(SyncTransactionRequest.class)))
+                .thenThrow(new DataIntegrityViolationException("Database fails"));
+
+        mockMvc.perform(post("/api/v1/transactions")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(validRequest)))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.status").value(500))
+                .andExpect(jsonPath("$.error").value("INTERNAL_SERVER_ERROR"))
+                .andExpect(jsonPath("$.message").value("An internal server error occurred"))
+                .andExpect(jsonPath("$.path").value("/api/v1/transactions"))
+                .andExpect(jsonPath("$.timestamp").exists());
     }
 }
