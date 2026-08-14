@@ -14,32 +14,32 @@
 [INFO] 
 [INFO] --- compiler:3.15.0:compile (default-compile) @ backend ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 12 source files with javac [debug parameters release 21] to target\classes
+[INFO] Compiling 17 source files with javac [debug parameters release 21] to target\classes
 [INFO] 
 [INFO] --- resources:3.5.0:testResources (default-testResources) @ backend ---
 [INFO] skip non existing resourceDirectory E:\backend\backend\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ backend ---
 [INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 6 source files with javac [debug parameters release 21] to target\test-classes
+[INFO] Compiling 8 source files with javac [debug parameters release 21] to target\test-classes
 [INFO] -------------------------------------------------------------
 [ERROR] COMPILATION ERROR : 
 [INFO] -------------------------------------------------------------
-[ERROR] /E:/backend/backend/src/test/java/com/lastmilebanking/backend/integration/TransactionIntegrationTest.java:[12,63] package org.springframework.boot.test.autoconfigure.web.servlet does not exist
-[ERROR] /E:/backend/backend/src/test/java/com/lastmilebanking/backend/integration/TransactionIntegrationTest.java:[35,2] cannot find symbol
-  symbol: class AutoConfigureMockMvc
+[ERROR] /E:/backend/backend/src/test/java/com/lastmilebanking/backend/repository/WalletRepositoryTest.java:[8,59] package org.springframework.boot.test.autoconfigure.orm.jpa does not exist
+[ERROR] /E:/backend/backend/src/test/java/com/lastmilebanking/backend/repository/WalletRepositoryTest.java:[18,2] cannot find symbol
+  symbol: class DataJpaTest
 [INFO] 2 errors 
 [INFO] -------------------------------------------------------------
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  8.015 s
-[INFO] Finished at: 2026-08-14T23:09:46+05:30
+[INFO] Total time:  7.891 s
+[INFO] Finished at: 2026-08-14T23:22:04+05:30
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.15.0:testCompile (default-testCompile) on project backend: Compilation failure: Compilation failure: 
-[ERROR] /E:/backend/backend/src/test/java/com/lastmilebanking/backend/integration/TransactionIntegrationTest.java:[12,63] package org.springframework.boot.test.autoconfigure.web.servlet does not exist
-[ERROR] /E:/backend/backend/src/test/java/com/lastmilebanking/backend/integration/TransactionIntegrationTest.java:[35,2] cannot find symbol
-[ERROR]   symbol: class AutoConfigureMockMvc
+[ERROR] /E:/backend/backend/src/test/java/com/lastmilebanking/backend/repository/WalletRepositoryTest.java:[8,59] package org.springframework.boot.test.autoconfigure.orm.jpa does not exist
+[ERROR] /E:/backend/backend/src/test/java/com/lastmilebanking/backend/repository/WalletRepositoryTest.java:[18,2] cannot find symbol
+[ERROR]   symbol: class DataJpaTest
 [ERROR] -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
