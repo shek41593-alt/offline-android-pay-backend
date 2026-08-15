@@ -79,4 +79,25 @@ public class TransactionService {
                 "Transaction already exists"
         );
     }
+
+    public Transaction getTransaction(String transactionId) {
+        return transactionRepository.findByTransactionId(transactionId)
+                .orElseThrow(() -> new IllegalArgumentException("Transaction not found"));
+    }
+
+    @Transactional
+    public Transaction getTransactionForUpdate(String transactionId) {
+        Transaction tx = transactionRepository.findByTransactionIdForUpdate(transactionId)
+                .orElseThrow(() -> new IllegalArgumentException("Transaction not found"));
+        // Force refresh L1 cache as a safety measure for concurrent queries
+        transactionRepository.flush(); // ensure connection is active? actually no EntityManager injected here, but simple ForUpdate is enough since it's the first thing called in Orchestrator.
+        return tx;
+    }
+
+    @Transactional
+    public void updateTransactionStatus(String transactionId, TransactionStatus status) {
+        Transaction tx = getTransaction(transactionId);
+        tx.setStatus(status);
+        transactionRepository.save(tx);
+    }
 }

@@ -14,9 +14,11 @@ import java.util.Optional;
 public class WalletService {
 
     private final WalletRepository walletRepository;
+    private final jakarta.persistence.EntityManager entityManager;
 
-    public WalletService(WalletRepository walletRepository) {
+    public WalletService(WalletRepository walletRepository, jakarta.persistence.EntityManager entityManager) {
         this.walletRepository = walletRepository;
+        this.entityManager = entityManager;
     }
 
     @Transactional
@@ -46,6 +48,11 @@ public class WalletService {
                 .orElseThrow(() -> new IllegalArgumentException("Wallet not found"));
     }
 
+    public Wallet getWalletByUserId(String userId) {
+        return walletRepository.findByUserId(userId).stream().findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Wallet not found for user: " + userId));
+    }
+
     public BigDecimal getBalance(String walletId) {
         return getWallet(walletId).getBalance();
     }
@@ -58,6 +65,7 @@ public class WalletService {
 
         Wallet wallet = walletRepository.findByWalletIdForUpdate(walletId)
                 .orElseThrow(() -> new IllegalArgumentException("Wallet not found"));
+        entityManager.refresh(wallet);
 
         if (wallet.getStatus() != WalletStatus.ACTIVE) {
             throw new IllegalArgumentException("Wallet is not active");
@@ -79,6 +87,7 @@ public class WalletService {
 
         Wallet wallet = walletRepository.findByWalletIdForUpdate(walletId)
                 .orElseThrow(() -> new IllegalArgumentException("Wallet not found"));
+        entityManager.refresh(wallet);
 
         if (wallet.getStatus() != WalletStatus.ACTIVE) {
             throw new IllegalArgumentException("Wallet is not active");

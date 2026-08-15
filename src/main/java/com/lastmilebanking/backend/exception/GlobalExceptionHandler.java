@@ -85,6 +85,35 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 
+    @ExceptionHandler({
+            InsufficientWalletBalanceException.class,
+            CurrencyMismatchException.class,
+            SameWalletPaymentException.class,
+            IllegalArgumentException.class,
+            IllegalStateException.class
+    })
+    public ResponseEntity<ErrorResponse> handleBusinessExceptions(
+            RuntimeException ex, HttpServletRequest request) {
+
+        int status = HttpStatus.BAD_REQUEST.value();
+        String errorName = "BAD_REQUEST";
+
+        if (ex instanceof IllegalStateException || ex instanceof CurrencyMismatchException) {
+            status = HttpStatus.CONFLICT.value();
+            errorName = "CONFLICT";
+        }
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                Instant.now(),
+                status,
+                errorName,
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+
+        return ResponseEntity.status(status).body(errorResponse);
+    }
+
     @ExceptionHandler(DataAccessException.class)
     public ResponseEntity<ErrorResponse> handleDataAccessException(
             DataAccessException ex, HttpServletRequest request) {

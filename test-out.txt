@@ -16,7 +16,8 @@
 [INFO] skip non existing resourceDirectory E:\backend\backend\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ backend ---
-[INFO] Nothing to compile - all classes are up to date.
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 10 source files with javac [debug parameters release 21] to target\test-classes
 [INFO] 
 [INFO] --- surefire:3.5.6:test (default-test) @ backend ---
 [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
@@ -24,11 +25,11 @@
 [INFO] -------------------------------------------------------
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
-[INFO] Running com.lastmilebanking.backend.BackendApplicationTests
-23:35:13.951 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.lastmilebanking.backend.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-23:35:14.155 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.BackendApplicationTests
-23:35:14.337 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.lastmilebanking.backend.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-23:35:14.339 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.BackendApplicationTests
+[INFO] Running com.lastmilebanking.backend.service.PaymentOrchestrationServiceTest
+10:46:02.759 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.lastmilebanking.backend.service.PaymentOrchestrationServiceTest]: PaymentOrchestrationServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+10:46:02.941 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.service.PaymentOrchestrationServiceTest
+10:46:03.061 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.lastmilebanking.backend.service.PaymentOrchestrationServiceTest]: PaymentOrchestrationServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+10:46:03.063 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.service.PaymentOrchestrationServiceTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -39,18 +40,18 @@
 
  :: Spring Boot ::                (v4.1.0)
 
-2026-08-14T23:35:14.959+05:30  INFO 17140 --- [backend] [           main] c.l.backend.BackendApplicationTests      : Starting BackendApplicationTests using Java 21.0.7 with PID 17140 (started by User in E:\backend\backend)
-2026-08-14T23:35:14.962+05:30  INFO 17140 --- [backend] [           main] c.l.backend.BackendApplicationTests      : No active profile set, falling back to 1 default profile: "default"
-2026-08-14T23:35:16.405+05:30  INFO 17140 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-08-14T23:35:16.631+05:30  INFO 17140 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 210 ms. Found 3 JPA repository interfaces.
-2026-08-14T23:35:17.429+05:30  INFO 17140 --- [backend] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-08-14T23:35:17.522+05:30  INFO 17140 --- [backend] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
-2026-08-14T23:35:18.310+05:30  INFO 17140 --- [backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-08-14T23:35:18.362+05:30  INFO 17140 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-08-14T23:35:18.597+05:30  INFO 17140 --- [backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3897f9ae
-2026-08-14T23:35:18.602+05:30  INFO 17140 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-08-14T23:35:18.651+05:30  WARN 17140 --- [backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-08-14T23:35:18.686+05:30  INFO 17140 --- [backend] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2026-08-15T10:46:03.477+05:30  INFO 20528 --- [backend] [           main] c.l.b.s.PaymentOrchestrationServiceTest  : Starting PaymentOrchestrationServiceTest using Java 21.0.7 with PID 20528 (started by User in E:\backend\backend)
+2026-08-15T10:46:03.480+05:30  INFO 20528 --- [backend] [           main] c.l.b.s.PaymentOrchestrationServiceTest  : No active profile set, falling back to 1 default profile: "default"
+2026-08-15T10:46:04.557+05:30  INFO 20528 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-15T10:46:04.770+05:30  INFO 20528 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 197 ms. Found 3 JPA repository interfaces.
+2026-08-15T10:46:05.404+05:30  INFO 20528 --- [backend] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-15T10:46:05.506+05:30  INFO 20528 --- [backend] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-15T10:46:06.143+05:30  INFO 20528 --- [backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-15T10:46:06.190+05:30  INFO 20528 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-15T10:46:06.380+05:30  INFO 20528 --- [backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@361c4981
+2026-08-15T10:46:06.380+05:30  INFO 20528 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-15T10:46:06.444+05:30  WARN 20528 --- [backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-15T10:46:06.481+05:30  INFO 20528 --- [backend] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [jdbc:postgresql://localhost:5432/lastmilebanking]
 	Database driver: PostgreSQL JDBC Driver
 	Database dialect: PostgreSQLDialect
@@ -62,682 +63,87 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-08-14T23:35:20.394+05:30  INFO 17140 --- [backend] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-08-14T23:35:20.532+05:30  INFO 17140 --- [backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-08-14T23:35:20.701+05:30  INFO 17140 --- [backend] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-08-14T23:35:22.626+05:30  WARN 17140 --- [backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-08-14T23:35:23.075+05:30  WARN 17140 --- [backend] [           main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
-2026-08-14T23:35:23.904+05:30  INFO 17140 --- [backend] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2026-08-14T23:35:24.062+05:30  INFO 17140 --- [backend] [           main] c.l.backend.BackendApplicationTests      : Started BackendApplicationTests in 9.61 seconds (process running for 12.081)
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.52 s -- in com.lastmilebanking.backend.BackendApplicationTests
-[INFO] Running com.lastmilebanking.backend.controller.TransactionControllerTest
-2026-08-14T23:35:25.472+05:30  INFO 17140 --- [backend] [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:25.472+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:25.472+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2026-08-14T23:35:26.109+05:30  INFO 17140 --- [backend] [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:26.109+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:26.109+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2026-08-14T23:35:26.144+05:30  INFO 17140 --- [backend] [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:26.144+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:26.144+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2026-08-14T23:35:26.183+05:30 ERROR 17140 --- [backend] [           main] c.l.b.exception.GlobalExceptionHandler   : Unexpected error occurred at /api/v1/transactions: Service failed unexpectedly
-
-java.lang.RuntimeException: Service failed unexpectedly
-	at com.lastmilebanking.backend.service.TransactionService.processTransaction(TransactionService.java:27) ~[classes/:na]
-	at com.lastmilebanking.backend.controller.TransactionController.createTransaction(TransactionController.java:26) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252) ~[spring-web-7.0.8.jar:7.0.8]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184) ~[spring-web-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649) ~[tomcat-embed-core-11.0.22.jar:6.1]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72) ~[spring-test-7.0.8.jar:7.0.8]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.22.jar:6.1]
-	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:160) ~[spring-test-7.0.8.jar:7.0.8]
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.8.jar:7.0.8]
-	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:199) ~[spring-test-7.0.8.jar:7.0.8]
-	at com.lastmilebanking.backend.controller.TransactionControllerTest.createTransaction_serviceFailure_returns500AndInternalServerError(TransactionControllerTest.java:143) ~[test-classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:701) ~[junit-platform-commons-6.0.3.jar:6.0.3]
-	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:502) ~[junit-platform-commons-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:45) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:123) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:246) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:218) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:179) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:157) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:125) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:57) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:56) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125) ~[surefire-api-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.5.6.jar:3.5.6]
-
-2026-08-14T23:35:26.231+05:30  INFO 17140 --- [backend] [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:26.232+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:26.232+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2026-08-14T23:35:26.251+05:30 ERROR 17140 --- [backend] [           main] c.l.b.exception.GlobalExceptionHandler   : Database error occurred at /api/v1/transactions: Database fails
-
-org.springframework.dao.DataIntegrityViolationException: Database fails
-	at com.lastmilebanking.backend.service.TransactionService.processTransaction(TransactionService.java:27) ~[classes/:na]
-	at com.lastmilebanking.backend.controller.TransactionController.createTransaction(TransactionController.java:26) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252) ~[spring-web-7.0.8.jar:7.0.8]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184) ~[spring-web-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649) ~[tomcat-embed-core-11.0.22.jar:6.1]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.8.jar:7.0.8]
-	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72) ~[spring-test-7.0.8.jar:7.0.8]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.22.jar:6.1]
-	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:160) ~[spring-test-7.0.8.jar:7.0.8]
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127) ~[spring-test-7.0.8.jar:7.0.8]
-	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:199) ~[spring-test-7.0.8.jar:7.0.8]
-	at com.lastmilebanking.backend.controller.TransactionControllerTest.createTransaction_persistenceFailure_returns500AndInternalServerError(TransactionControllerTest.java:159) ~[test-classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:701) ~[junit-platform-commons-6.0.3.jar:6.0.3]
-	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:502) ~[junit-platform-commons-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:45) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:123) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at java.base/java.util.ArrayList.forEach(Unknown Source) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58) ~[junit-platform-engine-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:246) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:218) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:179) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:157) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:125) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:57) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:56) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125) ~[surefire-api-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.5.6.jar:3.5.6]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.5.6.jar:3.5.6]
-
-2026-08-14T23:35:26.278+05:30  INFO 17140 --- [backend] [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:26.278+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:26.278+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2026-08-14T23:35:26.331+05:30  INFO 17140 --- [backend] [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:26.331+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:26.331+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.242 s -- in com.lastmilebanking.backend.controller.TransactionControllerTest
-[INFO] Running com.lastmilebanking.backend.dto.SyncTransactionRequestTest
-[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.265 s -- in com.lastmilebanking.backend.dto.SyncTransactionRequestTest
-[INFO] Running com.lastmilebanking.backend.integration.TransactionIntegrationTest
-2026-08-14T23:35:26.633+05:30  INFO 17140 --- [backend] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.lastmilebanking.backend.integration.TransactionIntegrationTest]: TransactionIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-08-14T23:35:26.660+05:30  INFO 17140 --- [backend] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.integration.TransactionIntegrationTest
-2026-08-14T23:35:26.662+05:30  INFO 17140 --- [backend] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.lastmilebanking.backend.integration.TransactionIntegrationTest]: TransactionIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-08-14T23:35:26.662+05:30  INFO 17140 --- [backend] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.integration.TransactionIntegrationTest
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
-
- :: Spring Boot ::                (v4.1.0)
-
-2026-08-14T23:35:26.751+05:30  INFO 17140 --- [backend] [           main] c.l.b.i.TransactionIntegrationTest       : Starting TransactionIntegrationTest using Java 21.0.7 with PID 17140 (started by User in E:\backend\backend)
-2026-08-14T23:35:26.751+05:30  INFO 17140 --- [backend] [           main] c.l.b.i.TransactionIntegrationTest       : No active profile set, falling back to 1 default profile: "default"
-2026-08-14T23:35:27.371+05:30  INFO 17140 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-08-14T23:35:27.401+05:30  INFO 17140 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 3 JPA repository interfaces.
-2026-08-14T23:35:27.876+05:30  INFO 17140 --- [backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 0 (http)
-2026-08-14T23:35:27.914+05:30  INFO 17140 --- [backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-08-14T23:35:27.916+05:30  INFO 17140 --- [backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-08-14T23:35:28.085+05:30  INFO 17140 --- [backend] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1334 ms
-2026-08-14T23:35:28.397+05:30  INFO 17140 --- [backend] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-08-14T23:35:28.462+05:30  INFO 17140 --- [backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-08-14T23:35:28.463+05:30  INFO 17140 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2026-08-14T23:35:28.542+05:30  INFO 17140 --- [backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@44b4b54
-2026-08-14T23:35:28.542+05:30  INFO 17140 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2026-08-14T23:35:28.552+05:30  WARN 17140 --- [backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-08-14T23:35:28.573+05:30  INFO 17140 --- [backend] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [jdbc:postgresql://localhost:5432/lastmilebanking]
-	Database driver: PostgreSQL JDBC Driver
-	Database dialect: PostgreSQLDialect
-	Database version: 18.4
-	Default catalog/schema: lastmilebanking/public
-	Autocommit mode: undefined/unknown
-	Isolation level: READ_COMMITTED [default READ_COMMITTED]
-	JDBC fetch size: none
-	Pool: DataSourceConnectionProvider
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2026-08-14T23:35:28.674+05:30  INFO 17140 --- [backend] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-08-14T23:35:28.762+05:30  INFO 17140 --- [backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-08-14T23:35:28.951+05:30  WARN 17140 --- [backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-08-14T23:35:29.044+05:30  WARN 17140 --- [backend] [           main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
-2026-08-14T23:35:29.216+05:30  INFO 17140 --- [backend] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2026-08-14T23:35:29.281+05:30  INFO 17140 --- [backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 49925 (http) with context path '/'
-2026-08-14T23:35:29.301+05:30  INFO 17140 --- [backend] [           main] c.l.b.i.TransactionIntegrationTest       : Started TransactionIntegrationTest in 2.624 seconds (process running for 17.315)
-2026-08-14T23:35:29.315+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:29.319+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:29.320+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: delete from transactions where id=?
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-2026-08-14T23:35:29.663+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:29.663+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:29.668+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-2026-08-14T23:35:29.701+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:29.701+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:29.701+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-2026-08-14T23:35:29.733+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:29.733+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:29.735+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-2026-08-14T23:35:29.763+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:29.763+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:29.765+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: delete from transactions where id=?
-Hibernate: delete from transactions where id=?
-Hibernate: delete from transactions where id=?
-2026-08-14T23:35:29.962+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:29.962+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:29.962+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: delete from transactions where id=?
-2026-08-14T23:35:30.092+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:30.092+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:30.092+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: delete from transactions where id=?
-2026-08-14T23:35:30.137+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:30.147+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:30.147+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: delete from transactions where id=?
-2026-08-14T23:35:30.201+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:30.201+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:30.207+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-2026-08-14T23:35:30.235+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:30.235+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:30.235+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: delete from transactions where id=?
-2026-08-14T23:35:30.288+05:30  INFO 17140 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring TestDispatcherServlet ''
-2026-08-14T23:35:30.289+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-08-14T23:35:30.289+05:30  INFO 17140 --- [backend] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.678 s -- in com.lastmilebanking.backend.integration.TransactionIntegrationTest
-[INFO] Running com.lastmilebanking.backend.repository.TransactionRepositoryTest
-2026-08-14T23:35:30.312+05:30  INFO 17140 --- [backend] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.lastmilebanking.backend.repository.TransactionRepositoryTest]: TransactionRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-08-14T23:35:30.332+05:30  INFO 17140 --- [backend] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.repository.TransactionRepositoryTest
-2026-08-14T23:35:30.335+05:30  INFO 17140 --- [backend] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.lastmilebanking.backend.repository.TransactionRepositoryTest]: TransactionRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-08-14T23:35:30.335+05:30  INFO 17140 --- [backend] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.repository.TransactionRepositoryTest
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: delete from transactions where id=?
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-2026-08-14T23:35:30.402+05:30  WARN 17140 --- [backend] [           main] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 23505
-2026-08-14T23:35:30.402+05:30  WARN 17140 --- [backend] [           main] org.hibernate.orm.jdbc.error             : ERROR: duplicate key value violates unique constraint "uk6plyfbm3wy6ds7hongoml5xbk"
-  Detail: Key (transaction_id)=(TX002) already exists.
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: delete from transactions where id=?
-Hibernate: select t1_0.id from transactions t1_0 where t1_0.transaction_id=? fetch first ? rows only
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: select t1_0.id from transactions t1_0 where t1_0.transaction_id=? fetch first ? rows only
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: delete from transactions where id=?
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
-Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
-Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.id=?
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.223 s -- in com.lastmilebanking.backend.repository.TransactionRepositoryTest
-[INFO] Running com.lastmilebanking.backend.repository.WalletRepositoryTest
-2026-08-14T23:35:30.545+05:30  INFO 17140 --- [backend] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.lastmilebanking.backend.repository.WalletRepositoryTest]: WalletRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-08-14T23:35:30.546+05:30  INFO 17140 --- [backend] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.repository.WalletRepositoryTest
-2026-08-14T23:35:30.550+05:30  INFO 17140 --- [backend] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.lastmilebanking.backend.repository.WalletRepositoryTest]: WalletRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-08-14T23:35:30.550+05:30  INFO 17140 --- [backend] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.repository.WalletRepositoryTest
+2026-08-15T10:46:07.801+05:30  INFO 20528 --- [backend] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-15T10:46:07.930+05:30  INFO 20528 --- [backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-15T10:46:08.045+05:30  INFO 20528 --- [backend] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-15T10:46:10.226+05:30  WARN 20528 --- [backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-15T10:46:10.535+05:30  WARN 20528 --- [backend] [           main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2026-08-15T10:46:11.173+05:30  INFO 20528 --- [backend] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-08-15T10:46:11.266+05:30  INFO 20528 --- [backend] [           main] c.l.b.s.PaymentOrchestrationServiceTest  : Started PaymentOrchestrationServiceTest in 8.111 seconds (process running for 9.693)
+Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
 Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
+Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
+Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
+Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
+Hibernate: insert into transactions (amount,created_at,currency,payment_mode,receiver_id,sender_id,signature,status,transaction_id,transaction_timestamp,updated_at) values (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
 Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
+Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
 Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
+Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
+Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
 Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.user_id=?
+Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.user_id=?
+Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.user_id=?
+Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.user_id=?
+Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
+Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
+Hibernate: update wallets set balance=?,currency=?,status=?,user_id=?,wallet_id=? where id=?
+Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
+Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
+Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
+Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
+Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
+Hibernate: update transactions set amount=?,created_at=?,currency=?,payment_mode=?,receiver_id=?,sender_id=?,signature=?,status=?,transaction_id=?,transaction_timestamp=?,updated_at=? where id=?
+Hibernate: update wallets set balance=?,currency=?,status=?,user_id=?,wallet_id=? where id=?
+Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
+Hibernate: update wallets set balance=?,currency=?,status=?,user_id=?,wallet_id=? where id=?
+Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
+Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
+Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
+Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
+Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
+Hibernate: update transactions set amount=?,created_at=?,currency=?,payment_mode=?,receiver_id=?,sender_id=?,signature=?,status=?,transaction_id=?,transaction_timestamp=?,updated_at=? where id=?
+Hibernate: update wallets set balance=?,currency=?,status=?,user_id=?,wallet_id=? where id=?
+Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0 where t1_0.transaction_id=?
+TEST_CONCURRENT_SUCCESSES=2
+Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
+Hibernate: delete from ledger_entries where id=?
+Hibernate: delete from ledger_entries where id=?
+Hibernate: delete from ledger_entries where id=?
+Hibernate: delete from ledger_entries where id=?
 Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=?
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-2026-08-14T23:35:30.636+05:30  WARN 17140 --- [backend] [           main] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 23505
-2026-08-14T23:35:30.636+05:30  WARN 17140 --- [backend] [           main] org.hibernate.orm.jdbc.error             : ERROR: duplicate key value violates unique constraint "uk3x8uve6j94tgub04634ujx5p8"
-  Detail: Key (wallet_id)=(W-DUP) already exists.
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.100 s -- in com.lastmilebanking.backend.repository.WalletRepositoryTest
-[INFO] Running com.lastmilebanking.backend.service.LedgerServiceTest
-2026-08-14T23:35:30.644+05:30  INFO 17140 --- [backend] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.lastmilebanking.backend.service.LedgerServiceTest]: LedgerServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-08-14T23:35:30.662+05:30  INFO 17140 --- [backend] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.service.LedgerServiceTest
-2026-08-14T23:35:30.664+05:30  INFO 17140 --- [backend] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.lastmilebanking.backend.service.LedgerServiceTest]: LedgerServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-08-14T23:35:30.665+05:30  INFO 17140 --- [backend] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.service.LedgerServiceTest
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: delete from ledger_entries where id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: delete from ledger_entries where id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: delete from ledger_entries where id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: delete from ledger_entries where id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: delete from ledger_entries where id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: delete from ledger_entries where id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-2026-08-14T23:35:30.913+05:30  WARN 17140 --- [backend] [           main] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 23505
-2026-08-14T23:35:30.913+05:30  WARN 17140 --- [backend] [           main] org.hibernate.orm.jdbc.error             : ERROR: duplicate key value violates unique constraint "ukfp08mdh54x43kweopivvlon4h"
-  Detail: Key (transaction_id, wallet_id, entry_type)=(TX_CONST, W001, DEBIT) already exists.
-2026-08-14T23:35:30.919+05:30 ERROR 17140 --- [backend] [           main] org.hibernate.orm.core                   : HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: Entry for instance of 'com.lastmilebanking.backend.entity.LedgerEntry' has a null identifier (this can happen if the session is flushed after an exception occurs)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.wallet_id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: delete from ledger_entries where id=?
-Hibernate: delete from ledger_entries where id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: delete from ledger_entries where id=?
-Hibernate: delete from ledger_entries where id=?
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0 where le1_0.transaction_id=? and le1_0.wallet_id=? and le1_0.entry_type=?
-Hibernate: insert into ledger_entries (amount,created_at,currency,entry_type,ledger_entry_id,transaction_id,wallet_id) values (?,?,?,?,?,?,?)
-Hibernate: select le1_0.id,le1_0.amount,le1_0.created_at,le1_0.currency,le1_0.entry_type,le1_0.ledger_entry_id,le1_0.transaction_id,le1_0.wallet_id from ledger_entries le1_0
-Hibernate: delete from ledger_entries where id=?
-[ERROR] Tests run: 15, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.400 s <<< FAILURE! -- in com.lastmilebanking.backend.service.LedgerServiceTest
-[ERROR] com.lastmilebanking.backend.service.LedgerServiceTest.testDatabaseConstraintDuplicatePrevented -- Time elapsed: 0.020 s <<< ERROR!
-org.hibernate.AssertionFailure: Entry for instance of 'com.lastmilebanking.backend.entity.LedgerEntry' has a null identifier (this can happen if the session is flushed after an exception occurs)
-	at org.hibernate.event.internal.DefaultFlushEntityEventListener.checkId(DefaultFlushEntityEventListener.java:69)
-	at org.hibernate.event.internal.DefaultFlushEntityEventListener.getValues(DefaultFlushEntityEventListener.java:178)
-	at org.hibernate.event.internal.DefaultFlushEntityEventListener.onFlushEntity(DefaultFlushEntityEventListener.java:137)
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
-	at org.hibernate.event.internal.AbstractFlushingEventListener.flushEntities(AbstractFlushingEventListener.java:229)
-	at org.hibernate.event.internal.AbstractFlushingEventListener.flushEverythingToExecutions(AbstractFlushingEventListener.java:69)
-	at org.hibernate.event.internal.DefaultAutoFlushEventListener.onAutoFlush(DefaultAutoFlushEventListener.java:47)
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
-	at org.hibernate.internal.SessionImpl.autoFlushIfRequired(SessionImpl.java:1409)
-	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$1(ConcreteSqmSelectQueryPlan.java:134)
-	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:484)
-	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:411)
-	at org.hibernate.query.sqm.internal.SqmQueryImpl.doList(SqmQueryImpl.java:379)
-	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:153)
-	at org.hibernate.query.Query.getResultList(Query.java:121)
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findAll(SimpleJpaRepository.java:412)
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.deleteAll(SimpleJpaRepository.java:311)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:278)
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169)
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:545)
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:290)
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:690)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:171)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133)
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371)
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:166)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
-	at jdk.proxy2/jdk.proxy2.$Proxy166.deleteAll(Unknown Source)
-	at com.lastmilebanking.backend.service.LedgerServiceTest.tearDown(LedgerServiceTest.java:36)
+Hibernate: delete from wallets where id=?
+Hibernate: delete from wallets where id=?
+Hibernate: select t1_0.id,t1_0.amount,t1_0.created_at,t1_0.currency,t1_0.payment_mode,t1_0.receiver_id,t1_0.sender_id,t1_0.signature,t1_0.status,t1_0.transaction_id,t1_0.transaction_timestamp,t1_0.updated_at from transactions t1_0
+Hibernate: delete from transactions where id=?
+Hibernate: delete from transactions where id=?
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 9.535 s <<< FAILURE! -- in com.lastmilebanking.backend.service.PaymentOrchestrationServiceTest
+[ERROR] com.lastmilebanking.backend.service.PaymentOrchestrationServiceTest.testConcurrentDifferentTransactions -- Time elapsed: 0.625 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
 
-[INFO] Running com.lastmilebanking.backend.service.TransactionServiceTest
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.331 s -- in com.lastmilebanking.backend.service.TransactionServiceTest
-[INFO] Running com.lastmilebanking.backend.service.WalletServiceTest
-2026-08-14T23:35:31.385+05:30  INFO 17140 --- [backend] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.lastmilebanking.backend.service.WalletServiceTest]: WalletServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-08-14T23:35:31.385+05:30  INFO 17140 --- [backend] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.service.WalletServiceTest
-2026-08-14T23:35:31.391+05:30  INFO 17140 --- [backend] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.lastmilebanking.backend.service.WalletServiceTest]: WalletServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-08-14T23:35:31.391+05:30  INFO 17140 --- [backend] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.lastmilebanking.backend.BackendApplication for test class com.lastmilebanking.backend.service.WalletServiceTest
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.id=?
-Hibernate: update wallets set balance=?,currency=?,status=?,user_id=?,wallet_id=? where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
-Hibernate: update wallets set balance=?,currency=?,status=?,user_id=?,wallet_id=? where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
-Hibernate: update wallets set balance=?,currency=?,status=?,user_id=?,wallet_id=? where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
-Hibernate: update wallets set balance=?,currency=?,status=?,user_id=?,wallet_id=? where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
-Hibernate: update wallets set balance=?,currency=?,status=?,user_id=?,wallet_id=? where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=? for no key update of w1_0
-Hibernate: update wallets set balance=?,currency=?,status=?,user_id=?,wallet_id=? where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0 where w1_0.wallet_id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: select w1_0.id from wallets w1_0 where w1_0.wallet_id=? fetch first ? rows only
-Hibernate: insert into wallets (balance,currency,status,user_id,wallet_id) values (?,?,?,?,?)
-Hibernate: select w1_0.id,w1_0.balance,w1_0.currency,w1_0.status,w1_0.user_id,w1_0.wallet_id from wallets w1_0
-Hibernate: delete from wallets where id=?
-[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.390 s -- in com.lastmilebanking.backend.service.WalletServiceTest
+expected: 1
+ but was: 2
+	at com.lastmilebanking.backend.service.PaymentOrchestrationServiceTest.testConcurrentDifferentTransactions(PaymentOrchestrationServiceTest.java:299)
+
 [INFO] 
 [INFO] Results:
 [INFO] 
-[ERROR] Errors: 
-[ERROR]   LedgerServiceTest.tearDown:36 » AssertionFailure Entry for instance of 'com.lastmilebanking.backend.entity.LedgerEntry' has a null identifier (this can happen if the session is flushed after an exception occurs)
+[ERROR] Failures: 
+[ERROR]   PaymentOrchestrationServiceTest.testConcurrentDifferentTransactions:299 
+expected: 1
+ but was: 2
 [INFO] 
-[ERROR] Tests run: 80, Failures: 0, Errors: 1, Skipped: 0
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
 [INFO] 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  23.867 s
-[INFO] Finished at: 2026-08-14T23:35:32+05:30
+[INFO] Total time:  16.858 s
+[INFO] Finished at: 2026-08-15T10:46:12+05:30
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.6:test (default-test) on project backend: 
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.6:test (default-test) on project backend: There are test failures.
 [ERROR] 
 [ERROR] See E:\backend\backend\target\surefire-reports for the individual test results.
 [ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
