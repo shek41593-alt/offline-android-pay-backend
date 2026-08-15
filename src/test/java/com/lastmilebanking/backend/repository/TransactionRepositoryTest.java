@@ -58,7 +58,7 @@ public class TransactionRepositoryTest {
         tx1.setAmount(new BigDecimal("50.00"));
         tx1.setCurrency("INR");
         tx1.setPaymentMode("QR");
-        tx1.setStatus(TransactionStatus.COMPLETED);
+        tx1.setStatus(TransactionStatus.SETTLED);
 
         transactionRepository.saveAndFlush(tx1);
 
@@ -69,7 +69,7 @@ public class TransactionRepositoryTest {
         tx2.setAmount(new BigDecimal("20.00"));
         tx2.setCurrency("INR");
         tx2.setPaymentMode("BLUETOOTH");
-        tx2.setStatus(TransactionStatus.COMPLETED);
+        tx2.setStatus(TransactionStatus.SETTLED);
 
         assertThrows(DataIntegrityViolationException.class, () -> {
             transactionRepository.saveAndFlush(tx2);

@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class TransactionController {
 
     private final TransactionService transactionService;
+    private final com.lastmilebanking.backend.service.SettlementService settlementService;
 
-    public TransactionController(TransactionService transactionService) {
+    public TransactionController(TransactionService transactionService, com.lastmilebanking.backend.service.SettlementService settlementService) {
         this.transactionService = transactionService;
+        this.settlementService = settlementService;
     }
 
     @PostMapping
@@ -30,5 +32,26 @@ public class TransactionController {
         }
         
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping("/{transactionId}")
+    public ResponseEntity<com.lastmilebanking.backend.dto.response.SettlementResponse> getTransactionStatus(@PathVariable String transactionId) {
+        com.lastmilebanking.backend.entity.Transaction tx = transactionService.getTransaction(transactionId);
+        
+        String msg = "Transaction is in state: " + tx.getStatus();
+        if (tx.getStatus() == TransactionStatus.SETTLED) {
+            msg = "Payment settled successfully";
+        }
+        return ResponseEntity.ok(new com.lastmilebanking.backend.dto.response.SettlementResponse(
+                tx.getTransactionId(),
+                tx.getStatus().name(),
+                msg
+        ));
+    }
+
+    @PostMapping("/{transactionId}/settle")
+    public ResponseEntity<com.lastmilebanking.backend.dto.response.SettlementResponse> settleTransaction(@PathVariable String transactionId) {
+        com.lastmilebanking.backend.dto.response.SettlementResponse response = settlementService.settle(transactionId);
+        return ResponseEntity.ok(response);
     }
 }

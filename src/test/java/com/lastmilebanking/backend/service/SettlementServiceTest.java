@@ -1,6 +1,7 @@
 package com.lastmilebanking.backend.service;
 
 import com.lastmilebanking.backend.dto.request.SyncTransactionRequest;
+import com.lastmilebanking.backend.dto.response.SettlementResponse;
 import com.lastmilebanking.backend.entity.Transaction;
 import com.lastmilebanking.backend.entity.TransactionStatus;
 import com.lastmilebanking.backend.entity.Wallet;
@@ -33,10 +34,10 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 
 @SpringBootTest
-public class PaymentOrchestrationServiceTest {
+public class SettlementServiceTest {
 
     @Autowired
-    private PaymentOrchestrationService paymentOrchestrationService;
+    private SettlementService settlementService;
 
     @Autowired
     private TransactionService transactionService;
@@ -93,9 +94,10 @@ public class PaymentOrchestrationServiceTest {
         prepareWallet("W1", "U1", new BigDecimal("1000.00"), "INR");
         prepareWallet("W2", "U2", new BigDecimal("500.00"), "INR");
 
-        Transaction result = paymentOrchestrationService.executePayment("TX_OK", "U1", "U2", new BigDecimal("300.00"), "INR");
+        SettlementResponse result = settlementService.settle("TX_OK");
 
-        assertThat(result.getStatus()).isEqualTo(TransactionStatus.COMPLETED);
+        assertThat(result.getStatus()).isEqualTo("SETTLED");
+        assertThat(transactionService.getTransaction("TX_OK").getStatus()).isEqualTo(TransactionStatus.SETTLED);
         assertThat(walletServiceSpy.getBalance("W1")).isEqualByComparingTo(new BigDecimal("700.00"));
         assertThat(walletServiceSpy.getBalance("W2")).isEqualByComparingTo(new BigDecimal("800.00"));
         assertThat(ledgerEntryRepository.findByTransactionId("TX_OK")).hasSize(2);
@@ -107,10 +109,11 @@ public class PaymentOrchestrationServiceTest {
         prepareWallet("W1", "U1", new BigDecimal("1000.00"), "INR");
         prepareWallet("W2", "U2", new BigDecimal("500.00"), "INR");
 
-        paymentOrchestrationService.executePayment("TX_EXB", "U1", "U2", new BigDecimal("1000.00"), "INR");
+        settlementService.settle("TX_EXB");
 
         assertThat(walletServiceSpy.getBalance("W1")).isEqualByComparingTo(BigDecimal.ZERO);
         assertThat(walletServiceSpy.getBalance("W2")).isEqualByComparingTo(new BigDecimal("1500.00"));
+        assertThat(transactionService.getTransaction("TX_EXB").getStatus()).isEqualTo(TransactionStatus.SETTLED);
     }
 
     @Test
@@ -120,15 +123,14 @@ public class PaymentOrchestrationServiceTest {
         prepareWallet("W2", "U2", new BigDecimal("500.00"), "INR");
 
         assertThrows(InsufficientWalletBalanceException.class, () -> {
-            paymentOrchestrationService.executePayment("TX_INS", "U1", "U2", new BigDecimal("1001.00"), "INR");
+            settlementService.settle("TX_INS");
         });
 
         assertThat(walletServiceSpy.getBalance("W1")).isEqualByComparingTo(new BigDecimal("1000.00"));
         assertThat(walletServiceSpy.getBalance("W2")).isEqualByComparingTo(new BigDecimal("500.00"));
         assertThat(ledgerEntryRepository.findByTransactionId("TX_INS")).isEmpty();
         
-        // Transaction should still be RECEIVED since it didn't complete
-        assertThat(transactionService.getTransaction("TX_INS").getStatus()).isEqualTo(TransactionStatus.RECEIVED);
+        assertThat(transactionService.getTransaction("TX_INS").getStatus()).isEqualTo(TransactionStatus.FAILED);
     }
 
     @Test
@@ -140,10 +142,11 @@ public class PaymentOrchestrationServiceTest {
         prepareWallet("W2", "U2", new BigDecimal("500.00"), "INR");
 
         assertThrows(IllegalArgumentException.class, () -> {
-            paymentOrchestrationService.executePayment("TX_SUSP", "U1", "U2", new BigDecimal("100.00"), "INR");
+            settlementService.settle("TX_SUSP");
         });
 
         assertThat(walletServiceSpy.getBalance("W1")).isEqualByComparingTo(new BigDecimal("1000.00"));
+        assertThat(transactionService.getTransaction("TX_SUSP").getStatus()).isEqualTo(TransactionStatus.FAILED);
     }
 
     @Test
@@ -152,8 +155,9 @@ public class PaymentOrchestrationServiceTest {
         prepareWallet("W1", "U1", new BigDecimal("1000.00"), "INR");
 
         assertThrows(SameWalletPaymentException.class, () -> {
-            paymentOrchestrationService.executePayment("TX_SAME", "U1", "U1", new BigDecimal("100.00"), "INR");
+            settlementService.settle("TX_SAME");
         });
+        assertThat(transactionService.getTransaction("TX_SAME").getStatus()).isEqualTo(TransactionStatus.FAILED);
     }
 
     @Test
@@ -163,8 +167,9 @@ public class PaymentOrchestrationServiceTest {
         prepareWallet("W2", "U2", new BigDecimal("500.00"), "INR");
 
         assertThrows(CurrencyMismatchException.class, () -> {
-            paymentOrchestrationService.executePayment("TX_CURR", "U1", "U2", new BigDecimal("100.00"), "USD");
+            settlementService.settle("TX_CURR");
         });
+        assertThat(transactionService.getTransaction("TX_CURR").getStatus()).isEqualTo(TransactionStatus.FAILED);
     }
 
     @Test
@@ -177,12 +182,13 @@ public class PaymentOrchestrationServiceTest {
                 .when(walletServiceSpy).credit(eq("W2"), any(BigDecimal.class));
 
         assertThrows(RuntimeException.class, () -> {
-            paymentOrchestrationService.executePayment("TX_RX_FAIL", "U1", "U2", new BigDecimal("100.00"), "INR");
+            settlementService.settle("TX_RX_FAIL");
         });
 
         // Ensure rollback (W1 balance unchanged despite being debited before credit failure)
         assertThat(walletServiceSpy.getBalance("W1")).isEqualByComparingTo(new BigDecimal("1000.00"));
         assertThat(ledgerEntryRepository.findByTransactionId("TX_RX_FAIL")).isEmpty();
+        assertThat(transactionService.getTransaction("TX_RX_FAIL").getStatus()).isEqualTo(TransactionStatus.FAILED);
     }
 
     @Test
@@ -195,13 +201,14 @@ public class PaymentOrchestrationServiceTest {
                 .when(ledgerServiceSpy).createDebitEntry(any(), any(), any(), any());
 
         assertThrows(RuntimeException.class, () -> {
-            paymentOrchestrationService.executePayment("TX_LD_FAIL", "U1", "U2", new BigDecimal("100.00"), "INR");
+            settlementService.settle("TX_LD_FAIL");
         });
 
         // Ensure rollback
         assertThat(walletServiceSpy.getBalance("W1")).isEqualByComparingTo(new BigDecimal("1000.00"));
         assertThat(walletServiceSpy.getBalance("W2")).isEqualByComparingTo(new BigDecimal("500.00"));
         assertThat(ledgerEntryRepository.findByTransactionId("TX_LD_FAIL")).isEmpty();
+        assertThat(transactionService.getTransaction("TX_LD_FAIL").getStatus()).isEqualTo(TransactionStatus.FAILED);
     }
 
     @Test
@@ -210,11 +217,12 @@ public class PaymentOrchestrationServiceTest {
         prepareWallet("W1", "U1", new BigDecimal("1000.00"), "INR");
         prepareWallet("W2", "U2", new BigDecimal("500.00"), "INR");
 
-        paymentOrchestrationService.executePayment("TX_RETRY", "U1", "U2", new BigDecimal("300.00"), "INR");
+        settlementService.settle("TX_RETRY");
         
         // Exact Retry
-        Transaction result2 = paymentOrchestrationService.executePayment("TX_RETRY", "U1", "U2", new BigDecimal("300.00"), "INR");
-        assertThat(result2.getStatus()).isEqualTo(TransactionStatus.COMPLETED);
+        SettlementResponse result2 = settlementService.settle("TX_RETRY");
+        assertThat(result2.getStatus()).isEqualTo("SETTLED");
+        assertThat(result2.getMessage()).isEqualTo("Already settled");
 
         // Verify only deducted once
         assertThat(walletServiceSpy.getBalance("W1")).isEqualByComparingTo(new BigDecimal("700.00"));
@@ -231,7 +239,7 @@ public class PaymentOrchestrationServiceTest {
 
         Callable<Boolean> task = () -> {
             try {
-                paymentOrchestrationService.executePayment("TX_CONC_SAME", "U1", "U2", new BigDecimal("300.00"), "INR");
+                settlementService.settle("TX_CONC_SAME");
                 return true;
             } catch (Exception e) {
                 return false;
@@ -264,20 +272,18 @@ public class PaymentOrchestrationServiceTest {
 
         Callable<Boolean> task1 = () -> {
             try {
-                paymentOrchestrationService.executePayment(tx1, "U1", "U2", new BigDecimal("700.00"), "INR");
+                settlementService.settle(tx1);
                 return true;
             } catch (Exception e) {
-                e.printStackTrace();
                 return false;
             }
         };
 
         Callable<Boolean> task2 = () -> {
             try {
-                paymentOrchestrationService.executePayment(tx2, "U1", "U2", new BigDecimal("700.00"), "INR");
+                settlementService.settle(tx2);
                 return true;
             } catch (Exception e) {
-                e.printStackTrace();
                 return false;
             }
         };
@@ -293,10 +299,18 @@ public class PaymentOrchestrationServiceTest {
             if (r.get()) successes++;
         }
 
-        System.out.println("TEST_CONCURRENT_SUCCESSES=" + successes);
-
         // Only one transaction can succeed
         assertThat(successes).isEqualTo(1);
         assertThat(walletServiceSpy.getBalance("W1")).isEqualByComparingTo(new BigDecimal("300.00"));
+        
+        int failedCount = 0;
+        int settledCount = 0;
+        if (transactionService.getTransaction(tx1).getStatus() == TransactionStatus.FAILED) failedCount++;
+        if (transactionService.getTransaction(tx2).getStatus() == TransactionStatus.FAILED) failedCount++;
+        if (transactionService.getTransaction(tx1).getStatus() == TransactionStatus.SETTLED) settledCount++;
+        if (transactionService.getTransaction(tx2).getStatus() == TransactionStatus.SETTLED) settledCount++;
+        
+        assertThat(failedCount).isEqualTo(1);
+        assertThat(settledCount).isEqualTo(1);
     }
 }

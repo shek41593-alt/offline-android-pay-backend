@@ -82,22 +82,46 @@ public class TransactionService {
 
     public Transaction getTransaction(String transactionId) {
         return transactionRepository.findByTransactionId(transactionId)
-                .orElseThrow(() -> new IllegalArgumentException("Transaction not found"));
+                .orElseThrow(() -> new com.lastmilebanking.backend.exception.TransactionNotFoundException("Transaction not found"));
     }
 
     @Transactional
     public Transaction getTransactionForUpdate(String transactionId) {
         Transaction tx = transactionRepository.findByTransactionIdForUpdate(transactionId)
-                .orElseThrow(() -> new IllegalArgumentException("Transaction not found"));
+                .orElseThrow(() -> new com.lastmilebanking.backend.exception.TransactionNotFoundException("Transaction not found"));
         // Force refresh L1 cache as a safety measure for concurrent queries
         transactionRepository.flush(); // ensure connection is active? actually no EntityManager injected here, but simple ForUpdate is enough since it's the first thing called in Orchestrator.
         return tx;
     }
 
     @Transactional
-    public void updateTransactionStatus(String transactionId, TransactionStatus status) {
-        Transaction tx = getTransaction(transactionId);
-        tx.setStatus(status);
+    public Transaction startProcessing(String transactionId) {
+        Transaction tx = getTransactionForUpdate(transactionId);
+        if (tx.getStatus() == TransactionStatus.SETTLED) {
+            throw new IllegalStateException("Transaction already settled");
+        }
+        if (tx.getStatus() == TransactionStatus.PROCESSING) {
+            throw new IllegalStateException("Transaction is already processing");
+        }
+        tx.setStatus(TransactionStatus.PROCESSING);
+        return transactionRepository.save(tx);
+    }
+
+    @Transactional
+    public void markSettled(String transactionId) {
+        Transaction tx = getTransactionForUpdate(transactionId);
+        if (tx.getStatus() != TransactionStatus.PROCESSING) {
+            throw new IllegalStateException("Transaction must be processing to settle");
+        }
+        tx.setStatus(TransactionStatus.SETTLED);
+        transactionRepository.save(tx);
+    }
+
+    @Transactional
+    public void markFailed(String transactionId) {
+        Transaction tx = getTransactionForUpdate(transactionId);
+        // It should be PROCESSING, but let's allow it just in case
+        tx.setStatus(TransactionStatus.FAILED);
         transactionRepository.save(tx);
     }
 }
