@@ -70,7 +70,41 @@ public class TransactionServiceTest {
         assertThat(response.getStatus()).isEqualTo(TransactionStatus.RECEIVED);
         assertThat(response.getTransactionId()).isEqualTo(validRequest.getTransactionId());
 
-        verify(transactionRepository, times(1)).save(any(Transaction.class));
+        verify(transactionRepository, times(1)).saveAndFlush(any(Transaction.class));
+    }
+
+    @Test
+    void testProcessTransaction_concurrentRace_handlesDuplicateSafely() {
+        Transaction existingTx = new Transaction();
+        existingTx.setTransactionId("B6-TX-RACE");
+        existingTx.setSenderId("A");
+        existingTx.setReceiverId("B");
+        existingTx.setAmount(new BigDecimal("99.99"));
+        existingTx.setCurrency("INR");
+        existingTx.setPaymentMode("QR");
+        existingTx.setTransactionTimestamp(validRequest.getTimestamp());
+        existingTx.setSignature("SIG-RACE");
+
+        when(transactionRepository.findByTransactionId("B6-TX-RACE"))
+                .thenReturn(Optional.empty())
+                .thenReturn(Optional.of(existingTx));
+
+        when(transactionRepository.saveAndFlush(any(Transaction.class)))
+                .thenThrow(new DataIntegrityViolationException("Unique constraint violation"));
+
+        validRequest.setTransactionId("B6-TX-RACE");
+        validRequest.setSenderId("A");
+        validRequest.setReceiverId("B");
+        validRequest.setAmount(new BigDecimal("99.99"));
+        validRequest.setCurrency("INR");
+        validRequest.setPaymentMode("QR");
+        validRequest.setSignature("SIG-RACE");
+
+        SyncTransactionResponse response = transactionService.processTransaction(validRequest);
+
+        assertThat(response.getStatus()).isEqualTo(TransactionStatus.DUPLICATE);
+        verify(transactionRepository, times(2)).findByTransactionId("B6-TX-RACE");
+        verify(transactionRepository, times(1)).saveAndFlush(any(Transaction.class));
     }
 
     @Test
@@ -83,7 +117,7 @@ public class TransactionServiceTest {
         assertThat(response.getStatus()).isEqualTo(TransactionStatus.DUPLICATE);
         assertThat(response.getTransactionId()).isEqualTo(validRequest.getTransactionId());
 
-        verify(transactionRepository, never()).save(any(Transaction.class));
+        verify(transactionRepository, never()).saveAndFlush(any(Transaction.class));
     }
 
     @Test
@@ -95,7 +129,7 @@ public class TransactionServiceTest {
             transactionService.processTransaction(validRequest);
         });
 
-        verify(transactionRepository, never()).save(any(Transaction.class));
+        verify(transactionRepository, never()).saveAndFlush(any(Transaction.class));
     }
     
     @Test
@@ -107,7 +141,7 @@ public class TransactionServiceTest {
             transactionService.processTransaction(validRequest);
         });
 
-        verify(transactionRepository, never()).save(any(Transaction.class));
+        verify(transactionRepository, never()).saveAndFlush(any(Transaction.class));
     }
 
     @Test
@@ -119,7 +153,7 @@ public class TransactionServiceTest {
             transactionService.processTransaction(validRequest);
         });
 
-        verify(transactionRepository, never()).save(any(Transaction.class));
+        verify(transactionRepository, never()).saveAndFlush(any(Transaction.class));
     }
 
     @Test
@@ -130,7 +164,7 @@ public class TransactionServiceTest {
         assertThrows(IdempotencyConflictException.class, () -> {
             transactionService.processTransaction(validRequest);
         });
-        verify(transactionRepository, never()).save(any(Transaction.class));
+        verify(transactionRepository, never()).saveAndFlush(any(Transaction.class));
     }
 
     @Test
@@ -141,7 +175,7 @@ public class TransactionServiceTest {
         assertThrows(IdempotencyConflictException.class, () -> {
             transactionService.processTransaction(validRequest);
         });
-        verify(transactionRepository, never()).save(any(Transaction.class));
+        verify(transactionRepository, never()).saveAndFlush(any(Transaction.class));
     }
     
     @Test
@@ -152,7 +186,7 @@ public class TransactionServiceTest {
         assertThrows(IdempotencyConflictException.class, () -> {
             transactionService.processTransaction(validRequest);
         });
-        verify(transactionRepository, never()).save(any(Transaction.class));
+        verify(transactionRepository, never()).saveAndFlush(any(Transaction.class));
     }
 
     @Test
@@ -163,7 +197,7 @@ public class TransactionServiceTest {
         assertThrows(IdempotencyConflictException.class, () -> {
             transactionService.processTransaction(validRequest);
         });
-        verify(transactionRepository, never()).save(any(Transaction.class));
+        verify(transactionRepository, never()).saveAndFlush(any(Transaction.class));
     }
 
     @Test
@@ -172,7 +206,7 @@ public class TransactionServiceTest {
             .thenReturn(Optional.empty()) // First call: no record
             .thenReturn(Optional.of(existingTx)); // Second call after constraint failure: record exists!
 
-        when(transactionRepository.save(any(Transaction.class)))
+        when(transactionRepository.saveAndFlush(any(Transaction.class)))
             .thenThrow(new DataIntegrityViolationException("duplicate key value violates unique constraint"));
 
         SyncTransactionResponse response = transactionService.processTransaction(validRequest);
@@ -180,7 +214,7 @@ public class TransactionServiceTest {
         assertThat(response).isNotNull();
         assertThat(response.getStatus()).isEqualTo(TransactionStatus.DUPLICATE);
         
-        verify(transactionRepository, times(1)).save(any(Transaction.class));
+        verify(transactionRepository, times(1)).saveAndFlush(any(Transaction.class));
         verify(transactionRepository, times(2)).findByTransactionId(validRequest.getTransactionId());
     }
 }

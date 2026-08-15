@@ -42,7 +42,7 @@ public class TransactionService {
         transaction.setStatus(TransactionStatus.RECEIVED);
 
         try {
-            transactionRepository.save(transaction);
+            transactionRepository.saveAndFlush(transaction);
         } catch (DataIntegrityViolationException e) {
             // Concurrent insert race condition occurred. Unique constraint failed.
             // We should fetch the one that was just inserted and check it!

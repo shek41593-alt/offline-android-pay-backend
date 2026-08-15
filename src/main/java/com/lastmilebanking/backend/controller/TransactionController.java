@@ -23,7 +23,15 @@ public class TransactionController {
 
     @PostMapping
     public ResponseEntity<SyncTransactionResponse> createTransaction(
-            @Valid @RequestBody SyncTransactionRequest request) {
+            @Valid @RequestBody SyncTransactionRequest request,
+            org.springframework.security.core.Authentication authentication) {
+        
+        if (authentication != null && authentication.getPrincipal() instanceof com.lastmilebanking.backend.entity.User) {
+            com.lastmilebanking.backend.entity.User user = (com.lastmilebanking.backend.entity.User) authentication.getPrincipal();
+            if (user.getUserId() != null && !user.getUserId().equals(request.getSenderId())) {
+                throw new org.springframework.security.access.AccessDeniedException("You are not authorized to initiate transactions for this sender");
+            }
+        }
         
         SyncTransactionResponse response = transactionService.processTransaction(request);
         
@@ -35,8 +43,16 @@ public class TransactionController {
     }
 
     @GetMapping("/{transactionId}")
-    public ResponseEntity<com.lastmilebanking.backend.dto.response.SettlementResponse> getTransactionStatus(@PathVariable String transactionId) {
+    public ResponseEntity<com.lastmilebanking.backend.dto.response.SettlementResponse> getTransactionStatus(
+            @PathVariable String transactionId,
+            org.springframework.security.core.Authentication authentication) {
+            
         com.lastmilebanking.backend.entity.Transaction tx = transactionService.getTransaction(transactionId);
+        
+        com.lastmilebanking.backend.entity.User user = (com.lastmilebanking.backend.entity.User) authentication.getPrincipal();
+        if (!user.getUserId().equals(tx.getSenderId()) && !user.getUserId().equals(tx.getReceiverId())) {
+            throw new org.springframework.security.access.AccessDeniedException("You are not authorized to view this transaction");
+        }
         
         String msg = "Transaction is in state: " + tx.getStatus();
         if (tx.getStatus() == TransactionStatus.SETTLED) {
@@ -50,7 +66,16 @@ public class TransactionController {
     }
 
     @PostMapping("/{transactionId}/settle")
-    public ResponseEntity<com.lastmilebanking.backend.dto.response.SettlementResponse> settleTransaction(@PathVariable String transactionId) {
+    public ResponseEntity<com.lastmilebanking.backend.dto.response.SettlementResponse> settleTransaction(
+            @PathVariable String transactionId,
+            org.springframework.security.core.Authentication authentication) {
+            
+        com.lastmilebanking.backend.entity.Transaction tx = transactionService.getTransaction(transactionId);
+        com.lastmilebanking.backend.entity.User user = (com.lastmilebanking.backend.entity.User) authentication.getPrincipal();
+        if (!user.getUserId().equals(tx.getSenderId()) && !user.getUserId().equals(tx.getReceiverId())) {
+            throw new org.springframework.security.access.AccessDeniedException("You are not authorized to settle this transaction");
+        }
+            
         com.lastmilebanking.backend.dto.response.SettlementResponse response = settlementService.settle(transactionId);
         return ResponseEntity.ok(response);
     }

@@ -37,6 +37,9 @@ public class TransactionControllerTest {
     @Mock
     private TransactionService transactionService;
 
+    @Mock
+    private com.lastmilebanking.backend.service.SettlementService settlementService;
+
     @InjectMocks
     private TransactionController transactionController;
 
@@ -46,6 +49,21 @@ public class TransactionControllerTest {
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders.standaloneSetup(transactionController)
+                .setCustomArgumentResolvers(new org.springframework.web.method.support.HandlerMethodArgumentResolver() {
+                    @Override
+                    public boolean supportsParameter(org.springframework.core.MethodParameter parameter) {
+                        return org.springframework.security.core.Authentication.class.isAssignableFrom(parameter.getParameterType());
+                    }
+                    @Override
+                    public Object resolveArgument(org.springframework.core.MethodParameter parameter,
+                                                  org.springframework.web.method.support.ModelAndViewContainer mavContainer,
+                                                  org.springframework.web.context.request.NativeWebRequest webRequest,
+                                                  org.springframework.web.bind.support.WebDataBinderFactory binderFactory) {
+                        com.lastmilebanking.backend.entity.User user = new com.lastmilebanking.backend.entity.User();
+                        user.setUserId("SENDER1");
+                        return new org.springframework.security.authentication.UsernamePasswordAuthenticationToken(user, null, java.util.Collections.emptyList());
+                    }
+                })
                 .setControllerAdvice(new GlobalExceptionHandler())
                 .build();
         objectMapper = new ObjectMapper();
