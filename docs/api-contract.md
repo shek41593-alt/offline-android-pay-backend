@@ -47,7 +47,7 @@ This document thoroughly details the backend API endpoints exposed for the Andro
 **Response (201 Created):**
 ```json
 {
-  "userId": "U...",
+  "userId": "USER001",
   "username": "user123",
   "role": "USER"
 }
@@ -76,7 +76,7 @@ This document thoroughly details the backend API endpoints exposed for the Andro
   "accessToken": "eyJhbGciOiJIUzI1NiJ9...",
   "tokenType": "Bearer",
   "expiresIn": 3600000,
-  "userId": "U...",
+  "userId": "USER001",
   "username": "user123",
   "role": "USER"
 }
@@ -102,8 +102,8 @@ Used by the Android client to sync offline transactions.
 ```json
 {
   "transactionId": "TX001",
-  "senderId": "U...",
-  "receiverId": "U...",
+  "senderId": "USER001",
+  "receiverId": "USER002",
   "amount": 100.50,
   "currency": "INR",
   "paymentMode": "QR",
@@ -123,7 +123,7 @@ Used by the Android client to sync offline transactions.
 ```
 
 **Response (200 OK) - Idempotent Duplicate Request:**
-Occurs when the identical transaction is synced multiple times (e.g. Android retries due to network failure).
+Occurs when the identical transaction is synced multiple times (e.g. Android retries due to network failure). `DUPLICATE` is NOT a lifecycle status of a payment. It is a sync confirmation code indicating the backend safely absorbed the retry constraint safely without side effects.
 ```json
 {
   "transactionId": "TX001",
@@ -136,7 +136,7 @@ Occurs when the identical transaction is synced multiple times (e.g. Android ret
 - `400 Bad Request`: Validation failure (negative amount, missing parameter, etc.).
 - `401 Unauthorized`: Missing or invalid JWT.
 - `403 Forbidden`: `senderId` does not match the authenticated `userId`.
-- `409 Conflict`: IDEMPOTENCY_CONFLICT. Occurs if the exact `transactionId` is used but data fields (amount, receiver, etc.) differ.
+- `409 Conflict`: `IDEMPOTENCY_CONFLICT`. Occurs if the exact `transactionId` is used but data fields (amount, receiver, etc.) differ.
 
 ### 3.2 Get Transaction Status
 - **URL**: `/api/v1/transactions/{transactionId}`
@@ -205,3 +205,55 @@ Whenever a non-200/201 response occurs, the client can expect the following payl
 - **500 (INTERNAL_SERVER_ERROR)**: Fatal unaccounted server crash.
 
 Note: No stack traces or infrastructure paths (like DB driver exceptions) will be emitted directly over endpoints.
+
+---
+
+## 5. Android Mapping Table
+
+Use the following table to map Backend Fields directly back to Android entity fields:
+
+| Backend Field | Android Meaning | JSON Type |
+| - | - | - |
+| transactionId | Unique universally-used identifier (UUID/String) tied to this payload | String |
+| senderId | Foreign key reflecting the user pushing the transaction to the backend | String |
+| receiverId | Foreign key corresponding to the merchant/recipient wallet ID | String |
+| amount | The absolute value transferred (parsed as `BigDecimal` explicitly in Java) | Number (e.g. `100.50`) |
+| currency | Identifying tracking value string for funds (e.g., `INR`) | String |
+| paymentMode | Enums determining offline mechanism used (`QR`, `BLUETOOTH`, `SMS`) | String |
+| timestamp | Standard strict ISO-8601 UTC mapped representation | String (`2026-X-X..`) |
+| signature | Signature string validating offline integrity to backend validation. | String |
+
+### Status Sync Behaviors:
+| Backend Status | Android Action |
+| - | - |
+| **RECEIVED** | Accept backend result and mark local transaction `SYNCED`. |
+| **DUPLICATE** | Transaction was previously synced successfully. Mark local transaction `SYNCED`. |
+| **PROCESSING** | Keep pending and retry status check via GET endpoint. |
+| **SETTLED** | Display as completed transaction on local device. |
+| **FAILED** | Apply failure handling logically (notify user of fund rejection/reversal). |
+
+---
+
+## 6. Offline Retry Contract
+
+Android operates within volatile network constraints where dropouts lead to retries. Synchronize actions against these backend conditions:
+
+- **Network timeout / Connection failure**: Safely retry the sync request identically later cleanly.
+- **HTTP 5xx (Internal Error)**: Wait and retry cautiously. Backend orchestrator may be handling heavy processing loads.
+- **HTTP 401 (Unauthorized)**: Force clear Android cached credentials and log out the user, requiring fresh relogin for a valid token buffer.
+- **HTTP 403 (Forbidden)**: Do NOT blindly retry! Indicates hard ownership block or fatal role discrepancy.
+- **HTTP 409 (Conflict)**: Do NOT blindly retry the unchanged payload! This indicates an Idempotency mismatch (reused ID with altered data). Fail the sync payload critically in the local DB.
+- **HTTP 400 (Bad Request)**: Do NOT retry identically formatted requests, they will perpetually fail backend validations.
+- **HTTP 404 (Not Found)**: Target endpoints have vanished, ensure APIs correspond logically; do not endlessly loop.
+
+---
+
+## 7. Signature Contract
+
+The `signature` payload key allows external device signature checks ensuring offline validation.
+
+- **Mandatory Requirements**: Currently recorded as an optional field in DTO modeling unless specifically integrated by explicit logic on Android orchestration limits via specific security pipelines.
+- **Data Signed**: Standard offline architecture requires payloads (Amount + timestamp + senderId + receiverId) generated client-side by cryptographic private-pairs.
+- **Current State**: Documented in B16 API phase as structurally accepted, but dynamic decryption gates reside inside Android validation mechanisms safely. 
+
+**LIMITATION:** Direct backend signature cryptographic algorithmic decryption checks are mock verified right now natively. Do NOT store any raw private hardware-level signing keys structurally inside Spring Boot controllers or git-repository configs.

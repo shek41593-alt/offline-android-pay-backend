@@ -294,6 +294,21 @@ public class TransactionIntegrationTest {
     }
 
     @Test
+    void testSenderOwnershipSecurityRegression() throws Exception {
+        SyncTransactionRequest request = createValidRequest("B10-TX-SEC1", "QR");
+        request.setSenderId("DIFFERENT_USER_ID"); // Token belongs to USER-B10-001
+
+        mockMvc.perform(post("/api/v1/transactions")
+                .header("Authorization", "Bearer " + validToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isForbidden()); // Spring Security AccessDenied is mapped to 403
+
+        assertThat(transactionRepository.findAll()).isEmpty();
+    }
+
+
+    @Test
     void testConcurrentRequests() throws Exception {
         SyncTransactionRequest request = createValidRequest("B10-TX-CONCUR", "QR");
         String payload = objectMapper.writeValueAsString(request);
