@@ -38,21 +38,41 @@ public class DevTestUserSeeder implements CommandLineRunner {
             throw new IllegalStateException("LASTMILE_TEST_PASSWORD is required for dev test user seeding.");
         }
 
-        String username = "android-test-user";
+        String targetUsername = "9876543210";
+        String legacyUsername = "android-test-user";
 
-        java.util.Optional<User> existingUserOpt = userRepository.findByUsername(username);
-        if (existingUserOpt.isPresent()) {
-            log.info("Test user '{}' already exists. Updating encoded password.", username);
-            User existingUser = existingUserOpt.get();
-            existingUser.setPasswordHash(passwordEncoder.encode(testPassword));
-            userRepository.save(existingUser);
+        java.util.Optional<User> legacyUserOpt = userRepository.findByUsername(legacyUsername);
+        java.util.Optional<User> targetUserOpt = userRepository.findByUsername(targetUsername);
+
+        if (legacyUserOpt.isPresent()) {
+            if (targetUserOpt.isPresent()) {
+                log.info("Both legacy '{}' and target '{}' exist. Deleting legacy and updating target.", legacyUsername, targetUsername);
+                userRepository.delete(legacyUserOpt.get());
+                User targetUser = targetUserOpt.get();
+                targetUser.setPasswordHash(passwordEncoder.encode(testPassword));
+                userRepository.save(targetUser);
+            } else {
+                log.info("Migrating legacy test user '{}' to '{}'.", legacyUsername, targetUsername);
+                User legacyUser = legacyUserOpt.get();
+                legacyUser.setUsername(targetUsername);
+                legacyUser.setPasswordHash(passwordEncoder.encode(testPassword));
+                userRepository.save(legacyUser);
+            }
             return;
         }
 
-        log.info("Creating test user '{}' for dev/local profile.", username);
+        if (targetUserOpt.isPresent()) {
+            log.info("Test user '{}' already exists. Updating encoded password.", targetUsername);
+            User targetUser = targetUserOpt.get();
+            targetUser.setPasswordHash(passwordEncoder.encode(testPassword));
+            userRepository.save(targetUser);
+            return;
+        }
+
+        log.info("Creating test user '{}' for dev/local profile.", targetUsername);
 
         User user = new User();
-        user.setUsername(username);
+        user.setUsername(targetUsername);
         user.setPasswordHash(passwordEncoder.encode(testPassword));
         user.setRole(UserRole.USER);
         user.setStatus(UserStatus.ACTIVE);
@@ -63,6 +83,6 @@ public class DevTestUserSeeder implements CommandLineRunner {
 
         userRepository.save(user);
 
-        log.info("Test user '{}' successfully created.", username);
+        log.info("Test user '{}' successfully created.", targetUsername);
     }
 }

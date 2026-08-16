@@ -59,7 +59,7 @@ public class DevTestUserSeederIntegrationTest {
 
     @Test
     public void testUserSeededCorrectlyUnderDevProfile() {
-        Optional<User> optionalUser = userRepository.findByUsername("android-test-user");
+        Optional<User> optionalUser = userRepository.findByUsername("9876543210");
         assertThat(optionalUser).isPresent();
 
         User user = optionalUser.get();
@@ -72,7 +72,7 @@ public class DevTestUserSeederIntegrationTest {
     @Test
     public void testExistingUserPasswordIsUpdated() throws Exception {
         // Change the password in DB manually to something else
-        User user = userRepository.findByUsername("android-test-user").get();
+        User user = userRepository.findByUsername("9876543210").get();
         user.setPasswordHash("manually-changed-hash");
         userRepository.save(user);
 
@@ -80,13 +80,13 @@ public class DevTestUserSeederIntegrationTest {
         devTestUserSeeder.run();
 
         // Verify it was changed back
-        User updatedUser = userRepository.findByUsername("android-test-user").get();
+        User updatedUser = userRepository.findByUsername("9876543210").get();
         assertThat(updatedUser.getPasswordHash()).isNotEqualTo("manually-changed-hash");
         assertThat(updatedUser.getPasswordHash()).startsWith("$2a$");
 
         // Verify login works again
         LoginRequest login = new LoginRequest();
-        login.setUsername("android-test-user");
+        login.setUsername("9876543210");
         login.setPassword("dev-secure-password");
 
         mockMvc.perform(post("/api/v1/auth/login")
@@ -98,7 +98,7 @@ public class DevTestUserSeederIntegrationTest {
     @Test
     public void testLoginWithDevCredentialsSucceeds() throws Exception {
         LoginRequest login = new LoginRequest();
-        login.setUsername("android-test-user");
+        login.setUsername("9876543210");
         login.setPassword("dev-secure-password");
 
         String response = mockMvc.perform(post("/api/v1/auth/login")
@@ -107,7 +107,7 @@ public class DevTestUserSeederIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accessToken").exists())
                 .andExpect(jsonPath("$.tokenType").value("Bearer"))
-                .andExpect(jsonPath("$.username").value("android-test-user"))
+                .andExpect(jsonPath("$.username").value("9876543210"))
                 .andExpect(jsonPath("$.role").value("USER"))
                 .andReturn().getResponse().getContentAsString();
 
@@ -122,7 +122,7 @@ public class DevTestUserSeederIntegrationTest {
     @Test
     public void testLoginWithWrongPasswordFails() throws Exception {
         LoginRequest login = new LoginRequest();
-        login.setUsername("android-test-user");
+        login.setUsername("9876543210");
         login.setPassword("wrong-password");
 
         mockMvc.perform(post("/api/v1/auth/login")
