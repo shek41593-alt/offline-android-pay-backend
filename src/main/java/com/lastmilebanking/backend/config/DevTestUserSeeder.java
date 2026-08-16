@@ -40,8 +40,12 @@ public class DevTestUserSeeder implements CommandLineRunner {
 
         String username = "android-test-user";
 
-        if (userRepository.existsByUsername(username)) {
-            log.info("Test user '{}' already exists. Skipping creation.", username);
+        java.util.Optional<User> existingUserOpt = userRepository.findByUsername(username);
+        if (existingUserOpt.isPresent()) {
+            log.info("Test user '{}' already exists. Updating encoded password.", username);
+            User existingUser = existingUserOpt.get();
+            existingUser.setPasswordHash(passwordEncoder.encode(testPassword));
+            userRepository.save(existingUser);
             return;
         }
 

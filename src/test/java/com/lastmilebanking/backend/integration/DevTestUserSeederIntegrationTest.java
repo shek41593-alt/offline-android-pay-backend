@@ -31,6 +31,9 @@ public class DevTestUserSeederIntegrationTest {
     private MockMvc mockMvc;
 
     @Autowired
+    private com.lastmilebanking.backend.config.DevTestUserSeeder devTestUserSeeder;
+
+    @Autowired
     private WebApplicationContext context;
 
     @Autowired
@@ -64,6 +67,32 @@ public class DevTestUserSeederIntegrationTest {
         assertThat(user.getUserId()).startsWith("U");
         assertThat(user.getPasswordHash()).startsWith("$2a$"); // BCrypt encoding
         assertThat(user.getPasswordHash()).isNotEqualTo("dev-secure-password"); // Plaintext not stored
+    }
+
+    @Test
+    public void testExistingUserPasswordIsUpdated() throws Exception {
+        // Change the password in DB manually to something else
+        User user = userRepository.findByUsername("android-test-user").get();
+        user.setPasswordHash("manually-changed-hash");
+        userRepository.save(user);
+
+        // Run the seeder again (it should update the password)
+        devTestUserSeeder.run();
+
+        // Verify it was changed back
+        User updatedUser = userRepository.findByUsername("android-test-user").get();
+        assertThat(updatedUser.getPasswordHash()).isNotEqualTo("manually-changed-hash");
+        assertThat(updatedUser.getPasswordHash()).startsWith("$2a$");
+
+        // Verify login works again
+        LoginRequest login = new LoginRequest();
+        login.setUsername("android-test-user");
+        login.setPassword("dev-secure-password");
+
+        mockMvc.perform(post("/api/v1/auth/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(login)))
+                .andExpect(status().isOk());
     }
 
     @Test
