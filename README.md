@@ -9,3 +9,7 @@ The current Spring Boot backend architecture includes PostgreSQL for persistent 
 ## Demo Documentation — Authentication
 
 Currently implemented authentication includes BCrypt password protection for user credentials, robust JWT authentication and authorization for securing API endpoints, along with dynamic development authentication provisioning via seeders.
+
+## Demo Documentation — Transaction Processing
+
+The backend provides robust transaction APIs featuring strict idempotency checks, end-to-end wallet processing, immutable ledger entries, and scheduled settlement procedures to maintain synchronization and offline consistency.
