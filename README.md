@@ -13,3 +13,7 @@ Currently implemented authentication includes BCrypt password protection for use
 ## Demo Documentation — Transaction Processing
 
 The backend provides robust transaction APIs featuring strict idempotency checks, end-to-end wallet processing, immutable ledger entries, and scheduled settlement procedures to maintain synchronization and offline consistency.
+
+## Demo Documentation — Reliability and Security
+
+The system is designed with multiple layers of reliability and security, implementing robust retry/recovery mechanisms, extensive security hardening, strict sender ownership validation, comprehensive error handling, and transactional PostgreSQL consistency to guarantee data integrity.
